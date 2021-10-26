@@ -1,0 +1,14 @@
+providers:
+  NotionProvider:
+    access_token: '123'
+wizards:
+  '📕 Book':
+    writer: NotionDatabaseWriter
+    writer_params:
+      database_id: '123'
+    property_order: ['Name', 'Author']
+    property_settings:
+      Author:
+        skippable: true
+      Status:
+        default: Waiting
