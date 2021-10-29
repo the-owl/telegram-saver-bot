@@ -1,4 +1,5 @@
 import yaml
+from box import Box
 
 from saver_bot.integrations.notion import NotionProvider
 from saver_bot.writer_bot_wizard import WizardPropertySettings, WriterBotWizard
@@ -20,6 +21,8 @@ def init_from_config_file(config_filename: str):
     providers = _extract_config_providers(data)
     writers, writers_provider = _extract_available_writers(providers)
     _wizards = _extract_available_wizards(data['wizards'], writers, writers_provider)
+
+    return Box(data)
 
 
 def get_available_wizards(context):

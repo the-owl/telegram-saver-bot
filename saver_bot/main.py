@@ -16,12 +16,13 @@ logger = logging.getLogger(__name__)
 
 
 def main() -> None:
-    telegram_token = os.environ.get('BOT_ACCESS_TOKEN')
     config_filename = os.environ.get('BOT_CONFIG', 'config.yaml')
+    redis_url = os.environ.get('REDIS_CONNECTION_STRING', 'redis://localhost:6379/0')
 
-    config.init_from_config_file(config_filename)
+    config_data = config.init_from_config_file(config_filename)
+    telegram_token = config_data.bot_access_token
 
-    redis = Redis(decode_responses=True)
+    redis = Redis.from_url(redis_url, decode_responses=True)
     updater = Updater(telegram_token, persistence=RedisPersistence(redis, store_bot_data=False, store_user_data=True))
 
     dispatcher = updater.dispatcher
