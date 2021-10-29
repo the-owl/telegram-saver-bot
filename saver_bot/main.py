@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 
 def main() -> None:
     config_filename = os.environ.get('BOT_CONFIG', 'config.yaml')
-    redis_url = os.environ.get('REDIS_CONNECTION_STRING', 'redis://localhost:6379/0')
+    redis_url = os.environ.get('REDIS_URL', 'redis://localhost:6379/0')
 
     config_data = config.init_from_config_file(config_filename)
     telegram_token = config_data.bot_access_token
