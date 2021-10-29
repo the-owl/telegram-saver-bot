@@ -12,12 +12,8 @@ from saver_bot.writer_bot_wizard import WriterBotWizard
 
 
 def start(update: Update, context: CallbackContext) -> DialogState:
-    if context.user_data.get(user_state.NOTION_ACCESS_TOKEN):
-        senders.main_menu(update, context)
-        return DialogState.MAIN_MENU
-    else:
-        senders.request_notion_token(update)
-        return DialogState.REQUEST_NOTION_TOKEN
+    senders.main_menu(update, context)
+    return DialogState.MAIN_MENU
 
 
 def handle_notion_token(update: Update, context: CallbackContext) -> DialogState:

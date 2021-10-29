@@ -32,7 +32,6 @@ def main() -> None:
         persistent=True,
         entry_points=[CommandHandler('start', handlers.start)],
         states={
-            DialogState.REQUEST_NOTION_TOKEN: [MessageHandler(Filters.text & ~Filters.command, handlers.handle_notion_token)],
             DialogState.SETUP_MENU: [MessageHandler(Filters.text & ~Filters.command, handlers.setup_menu)],
             DialogState.MAIN_MENU: [MessageHandler(Filters.text & ~Filters.command, handlers.main_menu)],
             DialogState.INPUT: [
